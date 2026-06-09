@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generoso Roberto — Public Health Data Analyst</title>
+<meta name="description" content="Public health physician and data analyst with a decade of experience in disease surveillance, health systems research, and programme management.">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #003B5C;
+    --navy-mid: #005A8C;
+    --navy-light: #E8F1F8;
+    --navy-hover: #F0F6FA;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --teal-mid: #5DCAA5;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --amber-mid: #EF9F27;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-mid: #AFA9EC;
+    --warm-white: #FAFAF8;
+    --warm-border: #E8E5E0;
+    --text-primary: #1A1A1A;
+    --text-secondary: #5C5C5C;
+    --text-tertiary: #8C8C8C;
+    --bg-surface: #F4F2EF;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-body: 'Libre Franklin', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--warm-white);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+  .delay-6 { animation-delay: 0.6s; }
+
+  /* Header */
+  header { padding: 3rem 0 2.5rem; border-bottom: 1px solid var(--warm-border); }
+  .header-bar { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+  .header-monogram {
+    width: 54px; height: 54px; border-radius: 12px; background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 20px; color: #fff; font-weight: 500; flex-shrink: 0;
+  }
+  .header-identity h1 { font-family: var(--font-display); font-size: 26px; font-weight: 500; letter-spacing: -0.3px; }
+  .header-identity span { font-size: 14px; color: var(--navy-mid); }
+  .header-intro { font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin-top: 16px; font-weight: 300; }
+
+  nav {
+    display: flex; gap: 0; margin-top: 24px; border-bottom: 1px solid var(--warm-border);
+    position: sticky; top: 0; background: var(--warm-white); z-index: 10;
+  }
+  nav a {
+    font-size: 13px; font-weight: 500; color: var(--text-tertiary); text-decoration: none;
+    padding: 12px 20px 12px 0; margin-right: 8px; transition: color 0.2s; letter-spacing: 0.2px;
+  }
+  nav a:hover { color: var(--text-primary); }
+  nav a.active { color: var(--navy); box-shadow: inset 0 -2px 0 var(--navy); }
+
+  /* Impact stats */
+  .impact-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 2rem 0; }
+  .impact-stat { background: var(--bg-surface); border-radius: 10px; padding: 18px 20px; }
+  .impact-num { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--navy); letter-spacing: -0.5px; }
+  .impact-desc { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; line-height: 1.35; }
+
+  /* Sections */
+  .section { padding: 2.5rem 0 0; }
+  .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-tertiary); font-weight: 600; margin-bottom: 1.25rem; }
+
+  /* Case study cards */
+  .case-card {
+    background: #fff; border: 1px solid var(--warm-border); border-radius: 14px;
+    margin-bottom: 16px; overflow: hidden; transition: border-color 0.25s, transform 0.2s;
+  }
+  .case-card:hover { border-color: #c8c4be; }
+  a.case-card-link { display: block; text-decoration: none; color: inherit; }
+  a.case-card-link .case-card { cursor: pointer; }
+  a.case-card-link .case-card:hover { transform: translateY(-2px); }
+  .case-accent { height: 4px; }
+  .case-body { padding: 1.5rem 1.75rem; }
+  .case-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+  .case-tags { display: flex; gap: 6px; flex-shrink: 0; }
+  .case-tag { font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .case-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 500; line-height: 1.35; margin-bottom: 4px; letter-spacing: -0.2px; }
+  .case-org { font-size: 13px; color: var(--text-tertiary); margin-bottom: 12px; }
+  .case-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
+  .case-outcomes { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--warm-border); }
+  .case-outcome { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; font-size: 13px; color: var(--text-secondary); }
+  .case-outcome-icon {
+    width: 18px; height: 18px; border-radius: 50%; background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .case-outcome-icon svg { width: 10px; height: 10px; }
+  .case-tools { display: flex; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--text-tertiary); }
+  .case-card .project-subheading { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-tertiary); margin-top: 16px; margin-bottom: 4px; }
+
+  /* Visualisation previews */
+  .case-viz {
+    width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 16px;
+  }
+  .case-viz svg { width: 100%; display: block; }
+
+  /* Technical project cards */
+  .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tech-card {
+    background: #fff; border: 1px solid var(--warm-border); border-radius: 12px;
+    padding: 0; cursor: pointer; transition: border-color 0.25s, transform 0.2s; overflow: hidden;
+  }
+  .tech-card:hover { border-color: #c8c4be; transform: translateY(-2px); }
+  .tech-card-body { padding: 1rem 1.25rem; }
+  .tech-viz { width: 100%; height: 100px; overflow: hidden; }
+  .tech-viz svg { width: 100%; height: 100%; display: block; }
+  .tech-card h4 { font-family: var(--font-display); font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .tech-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.45; font-weight: 300; }
+  .tech-card-coming { border-style: dashed; border-color: #d4d0ca; }
+  .tech-card-coming h4, .tech-card-coming p { color: var(--text-tertiary); }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .skill-category { font-size: 11px; color: var(--text-tertiary); font-weight: 600; margin-bottom: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-chip { font-size: 13px; padding: 5px 14px; border-radius: 20px; color: var(--text-secondary); background: var(--bg-surface); transition: background 0.2s; }
+  .skill-chip:hover { background: #ebe8e3; }
+
+  /* About */
+  .about-card { display: flex; gap: 24px; align-items: flex-start; }
+  .about-avatar {
+    width: 60px; height: 60px; border-radius: 50%; background: var(--navy-light);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .about-avatar svg { width: 28px; height: 28px; stroke: var(--navy-mid); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .about-body p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; font-weight: 300; }
+  .about-credentials { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .about-cred { font-size: 12px; padding: 4px 12px; border-radius: 20px; background: var(--navy-light); color: var(--navy); font-weight: 500; }
+  .about-seeking {
+    margin-top: 16px; padding: 16px 20px; background: var(--bg-surface); border-radius: 10px;
+    font-size: 14px; color: var(--text-secondary); line-height: 1.55; font-weight: 300;
+  }
+  .about-seeking strong { font-weight: 600; color: var(--text-primary); }
+  .about-links { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .about-link {
+    font-size: 13px; padding: 8px 18px; border-radius: 24px; border: 1px solid var(--warm-border);
+    color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 6px;
+    background: #fff; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  }
+  .about-link:hover { border-color: #c8c4be; background: var(--navy-hover); }
+  .about-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .about-link-primary { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 500; }
+  .about-link-primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+  .about-link-primary svg { stroke: #fff; }
+
+  footer {
+    padding: 2rem 0; margin-top: 3rem; border-top: 1px solid var(--warm-border);
+    display: flex; justify-content: space-between; font-size: 12px; color: var(--text-tertiary);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 1.25rem; }
+    .impact-row { grid-template-columns: repeat(2, 1fr); }
+    .tech-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .case-header { flex-direction: column; gap: 8px; }
+    .about-card { flex-direction: column; gap: 16px; }
+    .header-identity h1 { font-size: 22px; }
+    .impact-num { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="animate">
+    <div class="header-bar">
+      <div class="header-monogram">GR</div>
+      <div class="header-identity">
+        <h1>Generoso Roberto</h1>
+        <span>Public health physician · Data analyst · UK-based</span>
+      </div>
+    </div>
+    <p class="header-intro">A decade leading public health programmes — disease surveillance, outbreak response, health systems research, and USAID-funded data capacity building. Now applying formal data science training to the problems I've spent my career working on.</p>
+    <nav>
+      <a href="#work" class="active">Public health work</a>
+      <a href="#technical">Technical projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- IMPACT STATS -->
+  <div class="impact-row animate delay-1">
+    <div class="impact-stat"><div class="impact-num">10+</div><div class="impact-desc">Years in public health</div></div>
+    <div class="impact-stat"><div class="impact-num">41</div><div class="impact-desc">Hospitals in patient safety study</div></div>
+    <div class="impact-stat"><div class="impact-num">7</div><div class="impact-desc">Local councils in USAID data programme</div></div>
+    <div class="impact-stat"><div class="impact-num">1,400+</div><div class="impact-desc">Philippine municipalities in vaccine prioritisation analysis</div></div>
+  </div>
+
+  <!-- PROFESSIONAL CASE STUDIES -->
+  <section class="section animate delay-2" id="work">
+    <div class="section-label">Professional case studies</div>
+
+    <!-- Card 1: USAID COVID data -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #003B5C, #378ADD);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#E8F1F8" rx="10"/>
+            <!-- Stylised network/capacity diagram -->
+            <circle cx="380" cy="80" r="28" fill="#B5D4F4" stroke="#005A8C" stroke-width="1.5"/>
+            <text x="380" y="84" text-anchor="middle" font-family="Libre Franklin" font-size="10" fill="#003B5C" font-weight="500">DATA HUB</text>
+            <!-- 7 council nodes -->
+            <circle cx="140" cy="45" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="140" y="49" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 1</text>
+            <circle cx="220" cy="120" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="220" y="124" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 2</text>
+            <circle cx="300" cy="35" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="300" y="39" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 3</text>
+            <circle cx="460" cy="35" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="460" y="39" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 4</text>
+            <circle cx="540" cy="120" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="540" y="124" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 5</text>
+            <circle cx="620" cy="45" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="620" y="49" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 6</text>
+            <circle cx="380" cy="140" r="18" fill="#fff" stroke="#378ADD" stroke-width="1.2"/><text x="380" y="144" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#005A8C">LGU 7</text>
+            <!-- Connection lines -->
+            <line x1="158" y1="50" x2="352" y2="75" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <line x1="238" y1="115" x2="352" y2="85" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <line x1="318" y1="40" x2="352" y2="72" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <line x1="442" y1="40" x2="408" y2="72" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <line x1="522" y1="115" x2="408" y2="85" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <line x1="602" y1="50" x2="408" y2="75" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <line x1="380" y1="122" x2="380" y2="108" stroke="#85B7EB" stroke-width="1" opacity="0.6"/>
+            <!-- Team labels -->
+            <rect x="60" y="68" width="50" height="16" rx="8" fill="#005A8C"/><text x="85" y="79" text-anchor="middle" font-family="Libre Franklin" font-size="7" fill="#fff">IT</text>
+            <rect x="105" y="105" width="75" height="16" rx="8" fill="#005A8C"/><text x="142" y="116" text-anchor="middle" font-family="Libre Franklin" font-size="7" fill="#fff">DATA SCIENCE</text>
+            <rect x="575" y="105" width="90" height="16" rx="8" fill="#005A8C"/><text x="620" y="116" text-anchor="middle" font-family="Libre Franklin" font-size="7" fill="#fff">PUBLIC HEALTH</text>
+            <rect x="600" y="68" width="55" height="16" rx="8" fill="#005A8C"/><text x="627" y="79" text-anchor="middle" font-family="Libre Franklin" font-size="7" fill="#fff">DRR</text>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>COVID-19 data capacity building across seven local councils</h3>
+            <div class="case-org">USAID-RTI · Project manager</div>
+          </div>
+          <div class="case-tags"><span class="case-tag" style="background: var(--navy-light); color: var(--navy);">Programme management</span></div>
+        </div>
+        <p>Managed a USAID-funded initiative to strengthen COVID-19 data management capacity. Coordinated cross-functional teams spanning IT, data science, public health, and disaster risk reduction across seven local government councils.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Coordinated multi-disciplinary teams across seven councils</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Strengthened local COVID-19 data collection and reporting systems</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Bridged data science and public health practice at local government level</div>
+        </div>
+        <div class="case-tools"><span>Data management</span><span>·</span><span>Capacity building</span><span>·</span><span>Cross-functional coordination</span></div>
+      </div>
+    </div>
+
+    <!-- Card 2: Healthwatch PALS -->
+    <a href="https://www.healthwatchcityoflondon.org.uk/report/2025-03-13/patient-advice-and-liaison-service-pals-review-pals-services-available-city" target="_blank" rel="noopener noreferrer" class="case-card-link" aria-label="Read the published PALS evaluation report on Healthwatch City of London">
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #0F6E56, #5DCAA5);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#E1F5EE" rx="10"/>
+            <text x="40" y="22" font-family="Libre Franklin" font-size="10" fill="#085041" font-weight="500">PALS EVALUATION: PATIENT ADVICE SERVICES ACROSS TEN NHS TRUSTS</text>
+            <!-- Row 1: Trusts 1-5 -->
+            <rect x="40" y="32" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="50" y="46" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 1</text>
+            <circle cx="158" cy="42" r="5" fill="#0F6E56"/>
+            <rect x="50" y="54" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="50" y="54" width="85" height="4" rx="2" fill="#0F6E56" opacity="0.5"/>
+            <rect x="50" y="64" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="50" y="64" width="70" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="183" y="32" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="193" y="46" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 2</text>
+            <circle cx="301" cy="42" r="5" fill="#5DCAA5"/>
+            <rect x="193" y="54" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="193" y="54" width="62" height="4" rx="2" fill="#5DCAA5" opacity="0.7"/>
+            <rect x="193" y="64" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="193" y="64" width="50" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="326" y="32" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="336" y="46" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 3</text>
+            <circle cx="444" cy="42" r="5" fill="#0F6E56"/>
+            <rect x="336" y="54" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="336" y="54" width="78" height="4" rx="2" fill="#0F6E56" opacity="0.5"/>
+            <rect x="336" y="64" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="336" y="64" width="65" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="469" y="32" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="479" y="46" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 4</text>
+            <circle cx="587" cy="42" r="5" fill="#9FE1CB"/>
+            <rect x="479" y="54" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="479" y="54" width="38" height="4" rx="2" fill="#9FE1CB" opacity="0.9"/>
+            <rect x="479" y="64" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="479" y="64" width="30" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="612" y="32" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="622" y="46" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 5</text>
+            <circle cx="730" cy="42" r="5" fill="#5DCAA5"/>
+            <rect x="622" y="54" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="622" y="54" width="55" height="4" rx="2" fill="#5DCAA5" opacity="0.7"/>
+            <rect x="622" y="64" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="622" y="64" width="45" height="4" rx="2" fill="#9FE1CB"/>
+            <!-- Row 2: Trusts 6-10 -->
+            <rect x="40" y="92" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="50" y="106" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 6</text>
+            <circle cx="158" cy="102" r="5" fill="#9FE1CB"/>
+            <rect x="50" y="114" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="50" y="114" width="42" height="4" rx="2" fill="#9FE1CB" opacity="0.9"/>
+            <rect x="50" y="124" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="50" y="124" width="35" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="183" y="92" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="193" y="106" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 7</text>
+            <circle cx="301" cy="102" r="5" fill="#0F6E56"/>
+            <rect x="193" y="114" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="193" y="114" width="90" height="4" rx="2" fill="#0F6E56" opacity="0.5"/>
+            <rect x="193" y="124" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="193" y="124" width="75" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="326" y="92" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="336" y="106" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 8</text>
+            <circle cx="444" cy="102" r="5" fill="#5DCAA5"/>
+            <rect x="336" y="114" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="336" y="114" width="68" height="4" rx="2" fill="#5DCAA5" opacity="0.7"/>
+            <rect x="336" y="124" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="336" y="124" width="55" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="469" y="92" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="479" y="106" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 9</text>
+            <circle cx="587" cy="102" r="5" fill="#9FE1CB"/>
+            <rect x="479" y="114" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="479" y="114" width="45" height="4" rx="2" fill="#9FE1CB" opacity="0.9"/>
+            <rect x="479" y="124" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="479" y="124" width="38" height="4" rx="2" fill="#9FE1CB"/>
+            <rect x="612" y="92" width="128" height="48" rx="5" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="622" y="106" font-family="Libre Franklin" font-size="7" fill="#085041" font-weight="500">Trust 10</text>
+            <circle cx="730" cy="102" r="5" fill="#0F6E56"/>
+            <rect x="622" y="114" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="622" y="114" width="80" height="4" rx="2" fill="#0F6E56" opacity="0.5"/>
+            <rect x="622" y="124" width="100" height="4" rx="2" fill="#E1F5EE"/>
+            <rect x="622" y="124" width="68" height="4" rx="2" fill="#9FE1CB"/>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>PALS evaluation across ten NHS Trusts</h3>
+            <div class="case-org">Healthwatch City of London · Research and projects volunteer</div>
+          </div>
+          <div class="case-tags"><span class="case-tag" style="background: var(--teal-light); color: #085041;">Research</span><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+        </div>
+        <p>Co-authored an evaluation of Patient Advice and Liaison Services across ten NHS Trusts, assessing the usability, accessibility, and clarity of patient-facing information on each Trust's website. Conducted qualitative coding of patient and public feedback and contributed written sections that were included verbatim in the final published report.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Published report on the Healthwatch City of London website</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Qualitative coding of patient feedback across ten NHS Trusts</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Identified variability in digital accessibility and PALS visibility across Trusts</div>
+        </div>
+        <div class="case-tools"><span>Qualitative coding</span><span>·</span><span>Desk research</span><span>·</span><span>NHS system familiarity</span><span>·</span><span>Excel</span></div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Card 2: Patient Safety -->
+    <a href="https://actamedicaphilippina.upm.edu.ph/index.php/acta/article/view/6931" target="_blank" rel="noopener noreferrer" class="case-card-link" aria-label="Read the peer-reviewed publication in Acta Medica Philippina">
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #0F6E56, #5DCAA5);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#E1F5EE" rx="10"/>
+            <!-- Stylised indicator dashboard grid -->
+            <text x="40" y="28" font-family="Libre Franklin" font-size="10" fill="#085041" font-weight="500">600 PATIENT SAFETY INDICATORS — AUTOMATED SUMMARY</text>
+            <!-- Mini metric boxes -->
+            <rect x="40" y="40" width="100" height="50" rx="6" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="90" y="60" text-anchor="middle" font-family="Source Serif 4" font-size="16" fill="#0F6E56" font-weight="600">41</text>
+            <text x="90" y="78" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#5C5C5C">Hospitals</text>
+            <rect x="155" y="40" width="100" height="50" rx="6" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="205" y="60" text-anchor="middle" font-family="Source Serif 4" font-size="16" fill="#0F6E56" font-weight="600">600</text>
+            <text x="205" y="78" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#5C5C5C">Indicators</text>
+            <rect x="270" y="40" width="100" height="50" rx="6" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <text x="320" y="60" text-anchor="middle" font-family="Source Serif 4" font-size="16" fill="#0F6E56" font-weight="600">1</text>
+            <text x="320" y="78" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#5C5C5C">Publication</text>
+            <!-- Bar chart preview -->
+            <rect x="420" y="42" width="300" height="106" rx="6" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <rect x="440" y="100" width="18" height="38" rx="2" fill="#9FE1CB"/>
+            <rect x="468" y="80" width="18" height="58" rx="2" fill="#5DCAA5"/>
+            <rect x="496" y="90" width="18" height="48" rx="2" fill="#9FE1CB"/>
+            <rect x="524" y="65" width="18" height="73" rx="2" fill="#0F6E56"/>
+            <rect x="552" y="85" width="18" height="53" rx="2" fill="#5DCAA5"/>
+            <rect x="580" y="75" width="18" height="63" rx="2" fill="#9FE1CB"/>
+            <rect x="608" y="95" width="18" height="43" rx="2" fill="#0F6E56"/>
+            <rect x="636" y="70" width="18" height="68" rx="2" fill="#5DCAA5"/>
+            <rect x="664" y="88" width="18" height="50" rx="2" fill="#9FE1CB"/>
+            <line x1="440" y1="140" x2="690" y2="140" stroke="#5DCAA5" stroke-width="0.5"/>
+            <!-- Label rows -->
+            <rect x="40" y="105" width="340" height="40" rx="6" fill="#fff" stroke="#5DCAA5" stroke-width="0.8"/>
+            <rect x="50" y="115" width="60" height="6" rx="3" fill="#9FE1CB"/>
+            <rect x="120" y="115" width="80" height="6" rx="3" fill="#E1F5EE"/>
+            <rect x="210" y="115" width="50" height="6" rx="3" fill="#9FE1CB"/>
+            <rect x="50" y="130" width="90" height="6" rx="3" fill="#E1F5EE"/>
+            <rect x="150" y="130" width="40" height="6" rx="3" fill="#9FE1CB"/>
+            <rect x="200" y="130" width="70" height="6" rx="3" fill="#E1F5EE"/>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>National patient safety study across 41 hospitals</h3>
+            <div class="case-org">University of the Philippines Manila, College of Medicine · Science research specialist</div>
+          </div>
+          <div class="case-tags"><span class="case-tag" style="background: var(--teal-light); color: #085041;">Research</span><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+        </div>
+        <p>Contributed to a national-scale patient safety study. Built Excel-based automation tools that generated summaries for 600 patient safety indicators, reducing manual reporting burden. Co-authored a peer-reviewed journal article on the findings.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Automated reporting for 600 patient safety indicators</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Co-authored peer-reviewed publication</div>
+        </div>
+        <div class="case-tools"><span>Excel automation</span><span>·</span><span>Patient safety</span><span>·</span><span>Peer-reviewed research</span></div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Card 3: AMR costing study -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #854F0B, #EF9F27);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#FAEEDA" rx="10"/>
+            <!-- Regression scatter + line -->
+            <text x="40" y="28" font-family="Libre Franklin" font-size="10" fill="#633806" font-weight="500">AMR BURDEN — LOGISTIC &amp; MULTIVARIATE REGRESSION</text>
+            <rect x="40" y="38" width="340" height="110" rx="6" fill="#fff" stroke="#EF9F27" stroke-width="0.8"/>
+            <!-- Scatter dots -->
+            <circle cx="75" cy="115" r="3.5" fill="#EF9F27" opacity="0.5"/><circle cx="92" cy="108" r="3" fill="#EF9F27" opacity="0.5"/>
+            <circle cx="105" cy="100" r="4" fill="#EF9F27" opacity="0.6"/><circle cx="130" cy="95" r="3" fill="#EF9F27" opacity="0.5"/>
+            <circle cx="145" cy="88" r="3.5" fill="#EF9F27" opacity="0.6"/><circle cx="160" cy="92" r="3" fill="#EF9F27" opacity="0.5"/>
+            <circle cx="175" cy="80" r="4" fill="#854F0B" opacity="0.6"/><circle cx="195" cy="78" r="3" fill="#EF9F27" opacity="0.5"/>
+            <circle cx="210" cy="72" r="3.5" fill="#854F0B" opacity="0.6"/><circle cx="230" cy="68" r="3" fill="#EF9F27" opacity="0.5"/>
+            <circle cx="250" cy="65" r="4" fill="#854F0B" opacity="0.7"/><circle cx="268" cy="60" r="3.5" fill="#EF9F27" opacity="0.5"/>
+            <circle cx="285" cy="58" r="3" fill="#854F0B" opacity="0.6"/><circle cx="300" cy="55" r="4" fill="#854F0B" opacity="0.7"/>
+            <circle cx="320" cy="52" r="3" fill="#854F0B" opacity="0.6"/><circle cx="340" cy="48" r="3.5" fill="#854F0B" opacity="0.7"/>
+            <circle cx="120" cy="102" r="3" fill="#EF9F27" opacity="0.4"/><circle cx="200" cy="85" r="3.5" fill="#EF9F27" opacity="0.4"/>
+            <circle cx="260" cy="70" r="3" fill="#854F0B" opacity="0.5"/><circle cx="310" cy="60" r="3" fill="#854F0B" opacity="0.5"/>
+            <!-- Regression line -->
+            <line x1="65" y1="120" x2="355" y2="45" stroke="#854F0B" stroke-width="2" opacity="0.7"/>
+            <!-- Side metrics -->
+            <rect x="420" y="38" width="145" height="50" rx="6" fill="#fff" stroke="#EF9F27" stroke-width="0.8"/>
+            <text x="492" y="58" text-anchor="middle" font-family="Source Serif 4" font-size="18" fill="#854F0B" font-weight="600">684</text>
+            <text x="492" y="76" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#5C5C5C">Patient records analysed</text>
+            <rect x="580" y="38" width="145" height="50" rx="6" fill="#fff" stroke="#EF9F27" stroke-width="0.8"/>
+            <text x="652" y="58" text-anchor="middle" font-family="Source Serif 4" font-size="18" fill="#854F0B" font-weight="600">5</text>
+            <text x="652" y="76" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#5C5C5C">Tertiary hospitals</text>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>AMR burden and costing study — five tertiary hospitals</h3>
+            <div class="case-org">Independent researcher</div>
+          </div>
+          <div class="case-tags"><span class="case-tag" style="background: var(--amber-light); color: #633806;">Data analysis</span></div>
+        </div>
+        <p>Oversaw data collection from paper-based patient records at one of the five tertiary hospitals and led statistical analysis across 684 patient records using logistic and multivariate regression in Stata. Findings were submitted to the Department of Health as a co-authored research report and presented at the 2nd National Antimicrobial Resistance Summit.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>684 patient records, logistic and multivariate regression</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Statistical modelling in Stata</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Presented findings at the 2nd National Antimicrobial Resistance Summit</div>
+        </div>
+        <div class="case-tools"><span>Stata</span><span>·</span><span>Regression analysis</span><span>·</span><span>Health economics</span></div>
+      </div>
+    </div>
+
+    <!-- Card 4: Municipal health -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #534AB7, #AFA9EC);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="140" fill="#EEEDFE" rx="10"/>
+            <!-- Stylised surveillance flow -->
+            <text x="40" y="28" font-family="Libre Franklin" font-size="10" fill="#3C3489" font-weight="500">DISEASE SURVEILLANCE &amp; OUTBREAK RESPONSE SYSTEM</text>
+            <!-- Flow boxes -->
+            <rect x="40" y="45" width="120" height="40" rx="8" fill="#fff" stroke="#AFA9EC" stroke-width="1"/>
+            <text x="100" y="62" text-anchor="middle" font-family="Libre Franklin" font-size="9" fill="#534AB7" font-weight="500">COMMUNITY</text>
+            <text x="100" y="75" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#8C8C8C">Health workers</text>
+            <rect x="200" y="45" width="120" height="40" rx="8" fill="#fff" stroke="#AFA9EC" stroke-width="1"/>
+            <text x="260" y="62" text-anchor="middle" font-family="Libre Franklin" font-size="9" fill="#534AB7" font-weight="500">DETECTION</text>
+            <text x="260" y="75" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#8C8C8C">Surveillance data</text>
+            <rect x="360" y="45" width="120" height="40" rx="8" fill="#534AB7" stroke="#534AB7" stroke-width="1"/>
+            <text x="420" y="62" text-anchor="middle" font-family="Libre Franklin" font-size="9" fill="#fff" font-weight="500">ANALYSIS</text>
+            <text x="420" y="75" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#EEEDFE">Municipal health officer</text>
+            <rect x="520" y="45" width="120" height="40" rx="8" fill="#fff" stroke="#AFA9EC" stroke-width="1"/>
+            <text x="580" y="62" text-anchor="middle" font-family="Libre Franklin" font-size="9" fill="#534AB7" font-weight="500">RESPONSE</text>
+            <text x="580" y="75" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#8C8C8C">Outbreak control</text>
+            <rect x="640" y="45" width="90" height="40" rx="8" fill="#fff" stroke="#AFA9EC" stroke-width="1"/>
+            <text x="685" y="62" text-anchor="middle" font-family="Libre Franklin" font-size="9" fill="#534AB7" font-weight="500">REPORT</text>
+            <text x="685" y="75" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#8C8C8C">DOH regional</text>
+            <!-- Arrows -->
+            <path d="M160 65 L195 65" stroke="#AFA9EC" stroke-width="1.5" fill="none" marker-end="url(#arrowP)"/>
+            <path d="M320 65 L355 65" stroke="#AFA9EC" stroke-width="1.5" fill="none" marker-end="url(#arrowP)"/>
+            <path d="M480 65 L515 65" stroke="#AFA9EC" stroke-width="1.5" fill="none" marker-end="url(#arrowP)"/>
+            <path d="M640 65 L635 65" stroke="#AFA9EC" stroke-width="1.5" fill="none" marker-end="url(#arrowP)"/>
+            <defs><marker id="arrowP" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6" fill="#AFA9EC"/></marker></defs>
+            <!-- Team labels below -->
+            <rect x="40" y="100" width="80" height="22" rx="11" fill="#fff" stroke="#AFA9EC" stroke-width="0.8"/>
+            <text x="80" y="114" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#534AB7">Nurses</text>
+            <rect x="135" y="100" width="80" height="22" rx="11" fill="#fff" stroke="#AFA9EC" stroke-width="0.8"/>
+            <text x="175" y="114" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#534AB7">Midwives</text>
+            <rect x="230" y="100" width="110" height="22" rx="11" fill="#fff" stroke="#AFA9EC" stroke-width="0.8"/>
+            <text x="285" y="114" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#534AB7">Community health workers</text>
+            <rect x="355" y="100" width="130" height="22" rx="11" fill="#fff" stroke="#AFA9EC" stroke-width="0.8"/>
+            <text x="420" y="114" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#534AB7">Preventive programmes</text>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>Municipal health leadership — disease surveillance and outbreak response</h3>
+            <div class="case-org">Department of Health · Municipal health officer</div>
+          </div>
+          <div class="case-tags"><span class="case-tag" style="background: var(--purple-light); color: #3C3489;">Leadership</span></div>
+        </div>
+        <p>Led all preventive health programmes, disease surveillance, and outbreak response for an underserved rural municipality. Coordinated community health workers, nurses, and midwives across ward-level service delivery.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Led municipality-wide disease surveillance system</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Managed multi-disciplinary community health team</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Delivered outbreak response for underserved population</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Learning management -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #003B5C, #005A8C);"></div>
+      <div class="case-body">
+        <div class="case-header">
+          <div>
+            <h3>National postgraduate programme — learning management</h3>
+            <div class="case-org">Development Academy · Learning manager</div>
+          </div>
+          <div class="case-tags"><span class="case-tag" style="background: var(--navy-light); color: var(--navy);">Operations</span></div>
+        </div>
+        <p>Managed full-cycle implementation of a two-year national postgraduate programme for approximately 100 rural physicians. Coordinated government officials, faculty, and administrative processes. Identified and resolved a six-month contract payment backlog that had stalled programme operations.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Managed programme for ~100 physicians across two years</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Resolved six-month payment backlog blocking operations</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Coordinated government, academic, and administrative stakeholders</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL PROJECTS -->
+  <section class="section animate delay-3" id="technical">
+    <div class="section-label">Technical projects</div>
+
+    <!-- Featured: COVID-19 vaccine prioritisation -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #003B5C, #378ADD);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#E8F1F8" rx="10"/>
+            <text x="40" y="22" font-family="Libre Franklin" font-size="10" fill="#003B5C" font-weight="500">COVID-19 VACCINE PRIORITISATION: MUNICIPAL PRIORITY CLUSTERS, PHILIPPINES 2021</text>
+            <svg x="40" y="30" width="680" height="120" viewBox="0 0 380 100" preserveAspectRatio="xMidYMid meet">
+              <circle cx="190" cy="30" r="12" fill="#003B5C" opacity="0.7"/>
+              <circle cx="160" cy="50" r="18" fill="#378ADD" opacity="0.5"/>
+              <circle cx="220" cy="55" r="14" fill="#5DCAA5" opacity="0.6"/>
+              <circle cx="175" cy="75" r="10" fill="#EF9F27" opacity="0.6"/>
+              <circle cx="210" cy="78" r="16" fill="#5DCAA5" opacity="0.5"/>
+              <circle cx="240" cy="40" r="8" fill="#003B5C" opacity="0.6"/>
+              <circle cx="145" cy="35" r="6" fill="#378ADD" opacity="0.5"/>
+              <circle cx="250" cy="70" r="11" fill="#EF9F27" opacity="0.5"/>
+              <circle cx="130" cy="65" r="9" fill="#5DCAA5" opacity="0.6"/>
+              <circle cx="300" cy="30" r="4" fill="#003B5C"/><text x="310" y="34" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">Priority 1</text>
+              <circle cx="300" cy="48" r="4" fill="#378ADD"/><text x="310" y="52" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">Priority 2</text>
+              <circle cx="300" cy="66" r="4" fill="#5DCAA5"/><text x="310" y="70" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">Low priority</text>
+              <circle cx="300" cy="84" r="4" fill="#EF9F27"/><text x="310" y="88" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">Low resource</text>
+            </svg>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>COVID-19 Vaccine Prioritisation: Clustering Philippine Municipalities by Risk</h3>
+            <div class="case-org">Eskwelabs Data Science Fellowship Capstone · 2021</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag" style="background: var(--navy-light); color: var(--navy);">Python</span>
+            <span class="case-tag" style="background: var(--teal-light); color: #085041;">Streamlit</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+        </div>
+        <p>In early 2021, the Philippines began COVID-19 vaccination with a limited supply and 1,480 municipalities to cover. The Department of Health needed a transparent, data-driven method to decide which communities should receive vaccines first. Five government datasets existed but had never been combined into a single analytical framework for this purpose. This project built that framework.</p>
+        <p class="project-subheading">What I built</p>
+        <p>I collected, cleaned, and merged all five datasets at the municipality level, resolving inconsistent naming conventions across agencies and handling 94 municipalities with no recorded health facility bed data. I then ran exploratory analysis, spatial autocorrelation using Moran's I and LISA, and a hierarchical k-means clustering approach to group municipalities into four priority tiers. The analysis is deployed as a working Streamlit application where decision-makers can view choropleth maps of any risk variable, explore spatial autocorrelation hot spots and outliers, view the four-cluster priority map at national or provincial level, and update individual municipality data to rerun the model.</p>
+        <p class="project-subheading">What it found</p>
+        <p>27 municipalities had no health facility beds at all, including several with active COVID-19 cases at the time of analysis. These represent the sharpest equity gaps in the dataset. The highest-priority cluster captured Metro Manila and major cities: highest case burden, highest density, relatively better infrastructure but overwhelming absolute need. The lowest-priority cluster by immediate risk was also the lowest by healthcare access, which is the equity argument for parallel allocation even during early rollout. High case numbers and high poverty do not always coincide. The analysis separates these two dimensions rather than collapsing them into a single score.</p>
+        <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; line-height: 1.5;">Limitations: Data is cross-sectional as of March 2021. The model does not account for cold chain capacity, local government implementation capacity, or vaccine hesitancy. Not an official DOH tool and was not used in actual policy decisions.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>1,480 municipalities clustered into four vaccination priority tiers</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>27 municipalities identified with no health facility beds, including active COVID-19 cases</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Working Streamlit app deployed for interactive exploration by decision-makers</div>
+        </div>
+        <div class="case-tools"><span>Python</span><span>·</span><span>Pandas</span><span>·</span><span>GeoPandas</span><span>·</span><span>scikit-learn</span><span>·</span><span>libpysal</span><span>·</span><span>esda</span><span>·</span><span>Streamlit</span></div>
+        <div class="about-links">
+          <a href="https://clusteringvaccine-eie5lbvdm2rnnrncue8ti8.streamlit.app/" target="_blank" rel="noopener noreferrer" class="about-link about-link-primary"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open app</a>
+          <a href="https://github.com/biogear13/ClusteringVaccine" target="_blank" rel="noopener noreferrer" class="about-link"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>GitHub repository</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured: NHS A&E admissions analysis -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #0F6E56, #5DCAA5);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#E1F5EE" rx="10"/>
+            <text x="40" y="22" font-family="Libre Franklin" font-size="10" fill="#085041" font-weight="500">NHS A&amp;E ADMISSIONS: DISTRIBUTION OF TIME SPENT IN DEPARTMENT</text>
+            <svg x="40" y="30" width="680" height="120" viewBox="0 0 380 100" preserveAspectRatio="xMidYMid meet">
+              <rect x="40" y="70" width="22" height="18" rx="2" fill="#9FE1CB"/>
+              <rect x="68" y="55" width="22" height="33" rx="2" fill="#5DCAA5"/>
+              <rect x="96" y="30" width="22" height="58" rx="2" fill="#0F6E56"/>
+              <rect x="124" y="15" width="22" height="73" rx="2" fill="#0F6E56"/>
+              <rect x="152" y="25" width="22" height="63" rx="2" fill="#0F6E56"/>
+              <rect x="180" y="40" width="22" height="48" rx="2" fill="#5DCAA5"/>
+              <rect x="208" y="50" width="22" height="38" rx="2" fill="#5DCAA5"/>
+              <rect x="236" y="60" width="22" height="28" rx="2" fill="#9FE1CB"/>
+              <rect x="264" y="68" width="22" height="20" rx="2" fill="#9FE1CB"/>
+              <rect x="292" y="75" width="22" height="13" rx="2" fill="#9FE1CB"/>
+              <rect x="320" y="80" width="22" height="8" rx="2" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="0.5"/>
+              <line x1="40" y1="89" x2="342" y2="89" stroke="#5DCAA5" stroke-width="0.5"/>
+              <text x="190" y="98" text-anchor="middle" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">Time spent in A&amp;E (min)</text>
+            </svg>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>NHS A&E Admissions Analysis: Synthetic Data</h3>
+            <div class="case-org">Personal project</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag" style="background: var(--teal-light); color: #085041;">Python</span>
+            <span class="case-tag" style="background: var(--navy-light); color: var(--navy);">Dask</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+        </div>
+        <p>NHS A&E departments face persistent pressure on waiting times, admission rates, and resource allocation. Understanding which patients stay longest, when demand peaks, and what drives length of stay is foundational to operational planning. This project analyses four years of A&E admission data from a single NHS provider to identify the patient, clinical, and temporal factors most associated with extended A&E time and high investigation burden.</p>
+        <p class="project-subheading">The dataset</p>
+        <p>The data source is the NHS England A&E Synthetic Dataset, a realistic but privacy-safe dataset generated as part of an NHS England pilot to enable data sharing without exposing real patient records. The full dataset is approximately 4.29GB and contains over 65 million rows covering A&E attendances across 200+ NHS providers from 2014 to 2018. At that size, the dataset could not be loaded into memory using standard pandas on a consumer laptop. I used Dask to process the full file in chunks, filter to admitted patients, identify the provider with the highest admission volume, and extract its 326,444 records for analysis.</p>
+        <p class="project-subheading">What it found</p>
+        <p>The strongest predictor of extended A&E time is investigation burden. Patients undergoing eight or more investigations have a median stay exceeding 240 minutes. But the more revealing finding is about acuity. Patients with high healthcare resource needs spend less time in A&E than those with low resource needs, likely because high-acuity cases move through faster clinical pathways. The combination driving the longest stays is low healthcare resource need, older age, ambulance arrival, and night admission. Operational pressure in this dataset is not driven primarily by the most complex patients. It is driven by a volume of lower-acuity older patients who require extensive workup before a clinical decision can be made. That distinction matters for how A&E capacity is planned and staffed.</p>
+        <p>Other findings: admissions increased year-on-year from 2014 to 2018. Demand peaks in March and troughs in August. Saturdays have the highest weekly admission rate. The majority of patients in this dataset came from the most deprived areas by IMD decile.</p>
+        <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; line-height: 1.5;">Limitations: The dataset is synthetic and cannot be used for clinical or policy decisions. Analysis is limited to a single unidentified NHS provider and may not generalise across the system. The NHS England hosting page for this dataset is no longer active.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>4.29GB dataset processed using Dask across 200+ NHS providers</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>326,444 admission records analysed from the highest-volume provider</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Investigation burden and acuity identified as key drivers of extended A&E stays</div>
+        </div>
+        <div class="case-tools"><span>Python</span><span>·</span><span>Dask</span><span>·</span><span>Pandas</span><span>·</span><span>Matplotlib</span><span>·</span><span>Seaborn</span><span>·</span><span>Jupyter Notebook</span></div>
+        <div class="about-links">
+          <a href="https://github.com/biogear13/A-E_admitted_Synthetic_Data" target="_blank" rel="noopener noreferrer" class="about-link"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>GitHub repository</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured: Life expectancy analysis -->
+    <div class="case-card">
+      <div class="case-accent" style="background: linear-gradient(90deg, #003B5C, #5DCAA5);"></div>
+      <div class="case-body">
+        <div class="case-viz">
+          <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="760" height="160" fill="#E8F1F8" rx="10"/>
+            <text x="40" y="22" font-family="Libre Franklin" font-size="10" fill="#003B5C" font-weight="500">LIFE EXPECTANCY BY INCOME GROUP: GAINS FROM 2000 TO 2015</text>
+            <svg x="40" y="30" width="680" height="120" viewBox="0 0 380 100" preserveAspectRatio="xMidYMid meet">
+              <rect x="55" y="60" width="18" height="28" rx="2" fill="#85B7EB"/>
+              <rect x="75" y="40" width="18" height="48" rx="2" fill="#378ADD"/>
+              <text x="74" y="35" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">+8yr</text>
+              <rect x="120" y="50" width="18" height="38" rx="2" fill="#85B7EB"/>
+              <rect x="140" y="35" width="18" height="53" rx="2" fill="#378ADD"/>
+              <text x="139" y="30" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">+5yr</text>
+              <rect x="185" y="42" width="18" height="46" rx="2" fill="#85B7EB"/>
+              <rect x="205" y="30" width="18" height="58" rx="2" fill="#378ADD"/>
+              <text x="204" y="25" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">+4yr</text>
+              <rect x="250" y="38" width="18" height="50" rx="2" fill="#85B7EB"/>
+              <rect x="270" y="28" width="18" height="60" rx="2" fill="#378ADD"/>
+              <text x="269" y="23" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">+4yr</text>
+              <line x1="55" y1="89" x2="290" y2="89" stroke="#85B7EB" stroke-width="0.5"/>
+              <text x="74" y="97" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">Low income</text>
+              <text x="139" y="97" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">Lower mid</text>
+              <text x="204" y="97" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">Upper mid</text>
+              <text x="269" y="97" text-anchor="middle" font-family="Libre Franklin" font-size="6" fill="#5C5C5C">High</text>
+              <rect x="310" y="40" width="8" height="8" rx="2" fill="#85B7EB"/><text x="324" y="48" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">2000</text>
+              <rect x="310" y="55" width="8" height="8" rx="2" fill="#378ADD"/><text x="324" y="63" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">2015</text>
+            </svg>
+          </svg>
+        </div>
+        <div class="case-header">
+          <div>
+            <h3>Life Expectancy and Health Indicators: Global Trends 2000 to 2015</h3>
+            <div class="case-org">Personal project</div>
+          </div>
+          <div class="case-tags">
+            <span class="case-tag" style="background: var(--navy-light); color: var(--navy);">Python</span>
+            <span class="case-tag" style="background: var(--amber-light); color: #633806;">Tableau</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+        </div>
+        <p>Life expectancy is one of the most direct measures of whether a health system is working for its population. This project examines how life expectancy changed between 2000 and 2015 across countries grouped by income level, and which health and socioeconomic indicators track most closely with those changes.</p>
+        <p class="project-subheading">What I built</p>
+        <p>I combined WHO life expectancy data with UN country income classifications, cleaned and prepared the data in Python, and built an interactive Tableau dashboard exploring trends across income groups and nine associated indicators.</p>
+        <p class="project-subheading">What it found</p>
+        <p>Globally, average life expectancy increased from 66 years in 2000 to 71 years in 2015. The largest gains were in low-income countries, where life expectancy rose by 8 years from a base of 54. Lower middle-income countries gained 5 years; upper middle and high-income countries each gained 4.</p>
+        <p>Indicators associated with lower life expectancy, including adult deaths, under-five deaths, infant deaths, HIV/AIDS deaths, and adolescent thinness, declined across most income groups over the period. Indicators associated with higher life expectancy, including polio vaccination coverage, health expenditure, years of schooling, and income composition, increased across most groups.</p>
+        <p>Two findings cut against the general trend. In low-income countries, adolescent thinness did not decline, pointing to persistent food insecurity. In high-income countries, HIV/AIDS-related infant deaths increased over the period.</p>
+        <p>By 2015, countries with the lowest life expectancy and the poorest indicators across all nine measures were concentrated in Africa. The equity gap is not closing uniformly. Low-income African countries made the biggest relative gains but remained furthest from the global average.</p>
+        <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; line-height: 1.5;">Limitations: Analysis covers 2000 to 2015 only. Data is from a Kaggle WHO dataset and a UN income classification document. Correlations between indicators and life expectancy are descriptive, not causal.</p>
+        <div class="case-outcomes">
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Global life expectancy increased from 66 to 71 years between 2000 and 2015</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>Low-income countries gained the most, rising 8 years from a base of 54</div>
+          <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>African countries consistently worst-performing across all nine indicators by 2015</div>
+        </div>
+        <div class="case-tools"><span>Python</span><span>·</span><span>Pandas</span><span>·</span><span>Tableau</span></div>
+        <div class="about-links">
+          <a href="https://public.tableau.com/app/profile/generoso.roberto/viz/Lifeexpectancy_16794191704570/Dashboard1" target="_blank" rel="noopener noreferrer" class="about-link about-link-primary"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View dashboard</a>
+          <a href="https://github.com/biogear13/lifeexpectancy2000-2015analysis" target="_blank" rel="noopener noreferrer" class="about-link"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>GitHub repository</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="case-accent" style="background: linear-gradient(90deg, #854F0B, #EF9F27);"></div>
+        <div class="tech-viz">
+          <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="380" height="100" fill="#FAEEDA"/>
+            <!-- Disease/risk factor interactive preview -->
+            <rect x="30" y="15" width="155" height="70" rx="6" fill="#fff" stroke="#EF9F27" stroke-width="0.6"/>
+            <rect x="40" y="25" width="60" height="6" rx="3" fill="#EF9F27" opacity="0.4"/>
+            <rect x="40" y="38" width="10" height="35" rx="2" fill="#854F0B" opacity="0.7"/>
+            <rect x="55" y="48" width="10" height="25" rx="2" fill="#EF9F27" opacity="0.7"/>
+            <rect x="70" y="42" width="10" height="31" rx="2" fill="#854F0B" opacity="0.7"/>
+            <rect x="85" y="55" width="10" height="18" rx="2" fill="#EF9F27" opacity="0.7"/>
+            <rect x="100" y="35" width="10" height="38" rx="2" fill="#854F0B" opacity="0.7"/>
+            <rect x="115" y="50" width="10" height="23" rx="2" fill="#EF9F27" opacity="0.7"/>
+            <rect x="130" y="45" width="10" height="28" rx="2" fill="#854F0B" opacity="0.7"/>
+            <rect x="145" y="58" width="10" height="15" rx="2" fill="#EF9F27" opacity="0.7"/>
+            <rect x="205" y="15" width="155" height="70" rx="6" fill="#fff" stroke="#EF9F27" stroke-width="0.6"/>
+            <rect x="215" y="25" width="50" height="6" rx="3" fill="#EF9F27" opacity="0.4"/>
+            <!-- Pie chart -->
+            <circle cx="280" cy="55" r="22" fill="#EF9F27" opacity="0.3"/>
+            <path d="M280 33 A22 22 0 0 1 299 47 L280 55 Z" fill="#854F0B" opacity="0.7"/>
+            <path d="M299 47 A22 22 0 0 1 290 75 L280 55 Z" fill="#EF9F27" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="tech-card-body">
+          <h4>Diabetes Health Indicators: Risk Factors, Demographics, and Disease Burden</h4>
+          <div class="case-org">Personal project</div>
+          <div class="case-tags" style="margin-bottom: 10px;">
+            <span class="case-tag" style="background: var(--amber-light); color: #633806;">Tableau</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <p>Chronic disease prevalence is not evenly distributed. Who gets diabetes, and how their health is affected, depends heavily on demographic characteristics, body weight, and modifiable risk factors. This project builds an interactive Tableau dashboard to let users explore those relationships across a US population health dataset.</p>
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-tertiary); margin-top: 14px; margin-bottom: 4px; line-height: 1.4;">What I built</p>
+          <p>Using the Diabetes Health Indicators dataset from Kaggle, I cleaned and prepared the data and built a three-panel interactive Tableau dashboard. Users can filter by demographic characteristics, disease status, and risk factors, then explore how those selections change the distribution of weight categories, disease prevalence, perceived general health, and days of physical and mental ill health per month. The middle panel runs a Pareto analysis to identify which population subgroups account for 80% of diabetes cases in the selected view.</p>
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-tertiary); margin-top: 14px; margin-bottom: 4px; line-height: 1.4;">What it shows</p>
+          <p>The dashboard makes visible what aggregate statistics obscure: that risk factors and disease burden concentrate in specific demographic and weight-category subgroups, and that the same risk factor can have very different associations with health outcomes depending on which group you are looking at. The Pareto view identifies where a small number of subgroups account for a disproportionate share of cases.</p>
+          <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; line-height: 1.5;">Limitations: US population health survey data only. Findings are descriptive and exploratory. No causal claims can be made from this analysis.</p>
+          <div class="case-tools"><span>Tableau Public</span></div>
+          <div class="about-links">
+            <a href="https://public.tableau.com/app/profile/generoso.roberto/viz/DiseaseandRiskFactors/Dashboard1" target="_blank" rel="noopener noreferrer" class="about-link about-link-primary"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View dashboard</a>
+          </div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="case-accent" style="background: linear-gradient(90deg, #003B5C, #378ADD);"></div>
+        <div class="tech-viz">
+          <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="380" height="100" fill="#E8F1F8"/>
+            <!-- Simplified US map with bubbles -->
+            <rect x="60" y="20" width="260" height="65" rx="6" fill="#fff" stroke="#85B7EB" stroke-width="0.6"/>
+            <circle cx="140" cy="45" r="14" fill="#005A8C" opacity="0.25"/>
+            <circle cx="180" cy="55" r="20" fill="#005A8C" opacity="0.2"/>
+            <circle cx="230" cy="40" r="10" fill="#005A8C" opacity="0.3"/>
+            <circle cx="260" cy="60" r="16" fill="#005A8C" opacity="0.25"/>
+            <circle cx="120" cy="60" r="8" fill="#005A8C" opacity="0.35"/>
+            <circle cx="200" cy="35" r="6" fill="#005A8C" opacity="0.4"/>
+            <circle cx="280" cy="45" r="12" fill="#005A8C" opacity="0.2"/>
+            <circle cx="100" cy="40" r="5" fill="#005A8C" opacity="0.3"/>
+            <text x="190" y="95" text-anchor="middle" font-family="Libre Franklin" font-size="7" fill="#5C5C5C">Poverty rates by county, sociodemographic filters</text>
+          </svg>
+        </div>
+        <div class="tech-card-body">
+          <h4>Poverty Rates in the USA in 2015: Geographic Patterns and Associated Factors</h4>
+          <div class="case-org">Personal project</div>
+          <div class="case-tags" style="margin-bottom: 10px;">
+            <span class="case-tag" style="background: var(--amber-light); color: #633806;">Tableau</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-tertiary); flex-shrink: 0; align-self: center; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <p>Poverty alleviation requires knowing not just where poverty is highest but which factors are most closely associated with it and whether those patterns are consistent across geographies. This project uses US Census data to explore county-level poverty patterns across the contiguous United States in 2015.</p>
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-tertiary); margin-top: 14px; margin-bottom: 4px; line-height: 1.4;">What I built</p>
+          <p>Using a US Census demographic dataset from Kaggle, I selected six variables: poverty count, poverty percentage, median income, employment rate, percentage of minorities, and percentage of public sector workers. I cleaned and prepared the data in Tableau and built a multi-panel dashboard covering bar charts, scatter plots, and an interactive county-level map.</p>
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-tertiary); margin-top: 14px; margin-bottom: 4px; line-height: 1.4;">What it found</p>
+          <p>The headline finding is that the states with the largest number of people living below the poverty line are not the same states with the highest poverty percentage. These are two different problems requiring different responses. A state with a large poor population but a moderate poverty rate needs different resourcing than a state with a small population and an extremely high poverty rate.</p>
+          <p>At county level, the variation within states is as striking as the variation between them. The gap between the highest and lowest poverty counties within a single state can be larger than the gap between states.</p>
+          <p>On associated factors: higher unemployment, higher minority population percentage, and higher public sector employment all correlate positively with poverty percentage. Higher median income correlates negatively. Geographically, the counties with the highest poverty percentages cluster in the southeastern and southwestern United States and in parts of South Dakota.</p>
+          <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; line-height: 1.5;">Limitations: Single year cross-sectional data from 2015 only. Correlations are descriptive, not causal. Data is at county level and may mask variation within counties.</p>
+          <div class="case-outcomes">
+            <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>States with the highest poverty population differ from those with the highest poverty percentage</div>
+            <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>County-level variation within states as large as variation between states</div>
+            <div class="case-outcome"><div class="case-outcome-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3" fill="none" stroke="#0F6E56" stroke-width="2"/></svg></div>High poverty counties cluster in southeastern and southwestern US and parts of South Dakota</div>
+          </div>
+          <div class="case-tools"><span>Tableau</span></div>
+          <div class="about-links">
+            <a href="https://public.tableau.com/app/profile/generoso.roberto/viz/ContiguousUSAPoverty2015/Visualizationsfor2015PovertyinContiguousUSA" target="_blank" rel="noopener noreferrer" class="about-link about-link-primary"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>View dashboard</a>
+          </div>
+        </div>
+      </div>
+      <div class="tech-card tech-card-coming">
+        <div class="tech-viz" style="background: var(--bg-surface); display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg">
+            <rect width="380" height="100" fill="#F4F2EF"/>
+            <circle cx="190" cy="45" r="20" fill="none" stroke="#c8c4be" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="190" y="50" text-anchor="middle" font-family="Libre Franklin" font-size="10" fill="#c8c4be">In progress</text>
+            <text x="190" y="80" text-anchor="middle" font-family="Libre Franklin" font-size="8" fill="#c8c4be">UK health data</text>
+          </svg>
+        </div>
+        <div class="tech-card-body">
+          <h4>Coming soon</h4>
+          <p>Women's health outcomes &amp; PCOS prevalence — UK data analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section animate delay-4" id="skills">
+    <div class="section-label">Skills &amp; tools</div>
+    <div class="skills-grid">
+      <div><div class="skill-category">Analysis &amp; languages</div><div class="skill-list"><span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">Stata</span><span class="skill-chip">Pandas</span><span class="skill-chip">scikit-learn</span></div></div>
+      <div><div class="skill-category">Visualisation &amp; reporting</div><div class="skill-list"><span class="skill-chip">Tableau</span><span class="skill-chip">Matplotlib</span><span class="skill-chip">Excel automation</span><span class="skill-chip">Data storytelling</span></div></div>
+      <div><div class="skill-category">Public health domain</div><div class="skill-list"><span class="skill-chip">Epidemiology</span><span class="skill-chip">Disease surveillance</span><span class="skill-chip">AMR</span><span class="skill-chip">Health economics</span><span class="skill-chip">Patient safety</span></div></div>
+      <div><div class="skill-category">Methods</div><div class="skill-list"><span class="skill-chip">Regression analysis</span><span class="skill-chip">K-means clustering</span><span class="skill-chip">Qualitative content analysis</span><span class="skill-chip">Programme evaluation</span></div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section animate delay-5" id="about">
+    <div class="section-label">About</div>
+    <div class="about-card">
+      <div class="about-avatar">
+        <svg viewBox="0 0 24 24"><path d="M4.8 2.3A2 2 0 0 0 4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-1.2.3"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+      </div>
+      <div class="about-body">
+        <p>Public health physician with a decade of experience in disease surveillance, health systems research, and programme management — including USAID-funded data initiatives. Now bringing formal data science training to public health analytics in the UK.</p>
+        <div class="about-credentials">
+          <span class="about-cred">GMC Registered</span>
+          <span class="about-cred">Eskwelabs Data Science Fellowship</span>
+          <span class="about-cred">Masterschool Data Analytics</span>
+          <span class="about-cred">Peer-reviewed author</span>
+        </div>
+        <div class="about-seeking">
+          <strong>Looking for:</strong> Data, research, or evaluation roles in public health, health equity, or digital health implementation, where clinical background and analytical skills are an asset. UK-based, no sponsorship required.
+        </div>
+        <div class="about-links">
+          <a href="mailto:generoso.gr.roberto@gmail.com" class="about-link about-link-primary"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Get in touch</a>
+          <a href="https://www.linkedin.com/in/generoso-roberto/" class="about-link" target="_blank"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>Full background</a>
+          <a href="https://github.com/biogear13" class="about-link" target="_blank"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>GitHub</a>
+          <a href="#" class="about-link"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="animate delay-6">
+    <span>&copy; 2026 Generoso Roberto</span>
+    <span>UK-based · No sponsorship required</span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.getAttribute('href');
+      if (target && target !== '#') {
+        const el = document.querySelector(target);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
